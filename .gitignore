@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets — never commit these
+.env
+.streamlit/secrets.toml
+
+# Local SQLite databases (the app creates and seeds its own)
+*.db
+
+# Editor/OS clutter
+.vscode/
+Thumbs.db

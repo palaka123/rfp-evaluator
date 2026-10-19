@@ -1,0 +1,7 @@
+streamlit==1.66.0
+pymupdf==1.28.2
+pydantic==2.14.1
+openai==3.35.1
+python-dotenv==1.2.4
+reportlab==5.0.1
+pytest==9.1.1
