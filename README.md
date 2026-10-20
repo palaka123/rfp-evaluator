@@ -5,7 +5,7 @@ An LLM reads each proposal PDF and scores it against criteria stored in SQLite, 
 validates the output, calculates peer benchmarks and a **Peer Performance Index (PPI)**, and ranks suppliers with a
 deterministic tie-break order.
 
-**Live app:** https://YOUR-APP-URL.streamlit.app &nbsp;|&nbsp; **Sample output:** [`sample_output/`](sample_output/)
+**Live app:** https://rfp-evaluator-ranking.streamlit.app/ &nbsp;|&nbsp; **Sample output:** [`sample_output/`](sample_output/)
 
 > All supplier proposals in this repository are **synthetic** and were written for an academic exercise.
 > Supplier statements are treated as unverified vendor claims.
@@ -309,6 +309,7 @@ OPENAI_REASONING_EFFORT = "low"
 - **Text PDFs only.** Scanned image-only PDFs are rejected; there is no OCR.
 - **Storage on Streamlit Cloud is temporary.** The deployed app's SQLite database resets when the app restarts; the
   committed `sample_output/` JSON is the permanent record of a live run.
-- **No authentication.** The public demo uses one API key; usage is capped with an OpenAI budget limit.
+- **API keys.** Visitors can enter their own OpenAI key in the sidebar; it is used only for their browser session
+  and never stored. Without one, the app falls back to the key in Streamlit Secrets (if configured, with a budget limit).
 - **Benchmarks are relative to each batch.** PPI compares suppliers within one run, so PPIs from different runs are
   not directly comparable.

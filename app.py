@@ -9,13 +9,14 @@ from __future__ import annotations
 import json
 import os
 from contextlib import closing
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 
-from src.config import PLACEHOLDER_KEYS, get_llm_settings
+from src.config import PLACEHOLDER_KEYS, LLMSettings, get_llm_settings
 from src.db import (CriteriaError, get_connection, init_db, list_runs, load_criteria, load_run,
                     update_criteria)
 from src.input_validation import SupplierSubmission, validate_submissions
@@ -47,17 +48,32 @@ def load_secrets_into_env() -> None:
 
 # --- Sidebar --------------------------------------------------------------
 
-def render_sidebar() -> None:
+def active_settings() -> LLMSettings:
+    """Use the visitor's own API key if they entered one; otherwise the app's configured key (if any)."""
     settings = get_llm_settings()
+    user_key = st.session_state.get("user_api_key", "").strip()
+    return replace(settings, api_key=user_key) if user_key else settings
+
+
+def render_sidebar() -> None:
     with st.sidebar:
         st.header("About")
         st.write("Evaluates supplier proposals for an **Enterprise AI Platform & Implementation RFP** "
                  "with an LLM, then scores and ranks them with deterministic Python.")
         st.caption("All proposals are **synthetic**. Supplier statements are unverified vendor claims.")
         st.divider()
+        st.text_input("Your OpenAI API key", type="password", key="user_api_key", placeholder="sk-...",
+                      help="Used only during this browser session to call OpenAI. It is not saved to the "
+                           "database, written to logs or included in results.")
+        settings = active_settings()
+        if st.session_state.get("user_api_key", "").strip():
+            key_status = "your key (this session only)"
+        elif settings.api_key not in PLACEHOLDER_KEYS:
+            key_status = "app key configured"
+        else:
+            key_status = "missing: enter your key above"
         st.write(f"**Model:** `{settings.model}`")
-        configured = settings.api_key not in PLACEHOLDER_KEYS
-        st.write(f"**API key:** {'configured' if configured else 'missing'}")
+        st.write(f"**API key:** {key_status}")
         st.caption("On Streamlit Community Cloud the database is reset when the app restarts.")
 
 
@@ -140,7 +156,7 @@ def render_evaluate(conn) -> None:
         st.error("Please fix these problems before evaluating:\n\n" + "\n".join(f"- {e}" for e in errors))
         return
 
-    settings = get_llm_settings()
+    settings = active_settings()
     try:
         client = create_client(settings)
         with st.status(f"Evaluating {len(submissions)} suppliers with {settings.model}...", expanded=True) as box:
@@ -156,7 +172,10 @@ def render_evaluate(conn) -> None:
         st.error(f"The run was stopped and saved as FAILED. {exc.cause}")
         return
     except LLMProviderError as exc:
-        st.error(f"LLM provider problem ({exc.kind}): {exc}")
+        if exc.kind == "config":
+            st.error("No OpenAI API key available. Enter your key in the sidebar and press Evaluate again.")
+        else:
+            st.error(f"LLM provider problem ({exc.kind}): {exc}")
         return
 
     st.session_state["selected_run"] = outcome.rfp_run_id

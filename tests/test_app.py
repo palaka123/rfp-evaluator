@@ -56,18 +56,18 @@ def test_criteria_editor_shows_weight_total(db_with_run):
 def test_sample_toggle_shows_metadata_fields_and_missing_key_error(db_with_run):
     at = run_app()
     at.toggle[0].set_value(True).run()
-    names = [t.value for t in at.text_input]
+    names = [t.value for t in at.main.text_input]
     assert names == ["Apex Systems", "BrightPath Tech", "NexaWorks", "Orbit Digital"]
     evaluate = next(b for b in at.button if b.label == "Evaluate suppliers")
     evaluate.click().run()
     assert not at.exception
-    assert any("OPENAI_API_KEY is not set" in e.value for e in at.error)
+    assert any("Enter your key in the sidebar" in e.value for e in at.error)
 
 
 def test_duplicate_names_are_reported_in_ui(db_with_run):
     at = run_app()
     at.toggle[0].set_value(True).run()
-    at.text_input[1].set_value("apex systems").run()
+    at.main.text_input[1].set_value("apex systems").run()
     next(b for b in at.button if b.label == "Evaluate suppliers").click().run()
     assert any("duplicate supplier name" in e.value for e in at.error)
 
@@ -90,7 +90,16 @@ def test_streamlit_secrets_are_used_when_env_is_empty(db_with_run):
     at.secrets["OPENAI_API_KEY"] = "sk-test-from-secrets"
     at.run()
     assert not at.exception
-    assert any("API key:** configured" in md.value for md in at.sidebar.markdown)
+    assert any("app key configured" in md.value for md in at.sidebar.markdown)
+
+def test_visitor_key_is_used_for_the_session_and_never_stored(db_with_run):
+    path, _ = db_with_run
+    at = run_app()
+    at.sidebar.text_input(key="user_api_key").set_value("sk-visitor-test-key").run()
+    assert any("your key (this session only)" in md.value for md in at.sidebar.markdown)
+    # The key must not appear in anything the app saved to the database.
+    raw = path.read_bytes()
+    assert b"sk-visitor-test-key" not in raw
 
 def test_suggested_name():
     assert suggested_name("nexaworks.pdf") == "NexaWorks"
