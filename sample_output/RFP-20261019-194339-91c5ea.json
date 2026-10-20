@@ -1,0 +1,854 @@
+{
+  "rfp_run_id": "RFP-20261019-194339-91c5ea",
+  "created_at": "2026-10-19T19:43:39+00:00",
+  "status": "COMPLETED",
+  "criteria_snapshot": [
+    {
+      "criterion_id": 1,
+      "name": "Technical Capability",
+      "description": "Fit of the proposed enterprise AI platform: architecture, RAG and enterprise search design, integrations with existing systems, scalability and model choices.",
+      "weight": 30.0,
+      "max_score": 10,
+      "is_active": true
+    },
+    {
+      "criterion_id": 2,
+      "name": "Implementation Plan",
+      "description": "Credibility of delivery: phased timeline, milestones, team structure and staffing, dependencies, and how delivery risks will be managed.",
+      "weight": 20.0,
+      "max_score": 10,
+      "is_active": true
+    },
+    {
+      "criterion_id": 3,
+      "name": "Commercial Value",
+      "description": "Pricing clarity and total cost of ownership: licence and services costs, stated assumptions, exclusions, and value relative to scope.",
+      "weight": 20.0,
+      "max_score": 10,
+      "is_active": true
+    },
+    {
+      "criterion_id": 4,
+      "name": "Security & Compliance",
+      "description": "Security controls, data privacy and residency, access control, audit logging, AI governance, and claimed certifications.",
+      "weight": 20.0,
+      "max_score": 10,
+      "is_active": true
+    },
+    {
+      "criterion_id": 5,
+      "name": "Support & Experience",
+      "description": "Post-go-live support model and SLAs, comparable enterprise AI projects, and customer references.",
+      "weight": 10.0,
+      "max_score": 10,
+      "is_active": true
+    }
+  ],
+  "suppliers": [
+    {
+      "supplier_name": "Apex Systems",
+      "submission_date": "2026-10-05",
+      "experience_rating": 4.2,
+      "status": "OK",
+      "absolute_score": 75.0,
+      "ppi": 98.33,
+      "ppi_unrounded": 98.33333333333334,
+      "criteria": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "max_score": 10,
+          "score": 8,
+          "status": "ASSESSED",
+          "justification": "The proposal describes a specific architecture with hybrid retrieval, reranking, citations, a multi-provider model gateway, named connectors, permission-aware retrieval, and stated load-test and evaluation targets. Specific model providers or model choices are not identified, and the performance figures are vendor claims.",
+          "evidence": [
+            "Hybrid retrieval: vector search combined with keyword (BM25) search and a cross-encoder re-ranker.",
+            "Prebuilt connectors for SharePoint Online, Confluence Cloud, ServiceNow and SAP S/4HANA (OData).",
+            "Load-tested by Apex to 20 million documents and 5,000 concurrent users."
+          ],
+          "weighted_score": 24.0,
+          "benchmark": 8,
+          "gap": 0,
+          "relative_pct": 100.0
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 8,
+          "status": "ASSESSED",
+          "justification": "A 24-week, three-phase plan includes phase durations, outcomes, a 300-user pilot, an 11-person team, and a stated client dependency. The proposal identifies some risks and mitigations, but does not provide detailed milestone acceptance criteria, named staffing commitments, or a broader delivery-risk process.",
+          "evidence": [
+            "We propose a 24-week, three-phase delivery with a 300-user pilot before enterprise rollout.",
+            "An 11-person team: engagement lead, project manager, solution architect, security architect, two ML engineers, three data and integration engineers, a QA engineer and a part-time change management lead.",
+            "Any delay moves the plan day for day."
+          ],
+          "weighted_score": 16.0,
+          "benchmark": 8,
+          "gap": 0,
+          "relative_pct": 100.0
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 7,
+          "status": "ASSESSED",
+          "justification": "The proposal itemizes annual subscription, fixed implementation services, optional premium support, a three-year total, and estimated Azure consumption. Azure costs are variable and billed separately; content cleansing is excluded, and details such as renewal pricing and the assumptions behind the cloud estimate are not given.",
+          "evidence": [
+            "Platform subscription (up to 5,000 users), per year\n420,000",
+            "Three-year total (subscription + implementation)\n1,645,000",
+            "Azure consumption is billed to Northwind directly (estimated USD 8,000-12,000 per month)."
+          ],
+          "weighted_score": 14.0,
+          "benchmark": 7,
+          "gap": 0,
+          "relative_pct": 100.0
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 8,
+          "status": "ASSESSED",
+          "justification": "The proposal states specific encryption, key-management, residency, training-data, access-control, logging, PII-redaction, and red-team measures. Certification and control statements are vendor claims, and the proposal identifies the certificates and report as fictional for this exercise; their validity cannot be established from the proposal.",
+          "evidence": [
+            "AES-256 encryption at rest, TLS 1.3 in transit, customer-managed keys supported.",
+            "Data residency in the Azure region selected by Northwind; no customer data is used to train models.",
+            "Role-based access control; prompts and responses are audit-logged to Northwind's SIEM for 12 months."
+          ],
+          "weighted_score": 16.0,
+          "benchmark": 8,
+          "gap": 0,
+          "relative_pct": 100.0
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "The proposal gives response targets for P1 and P2 incidents, describes standard and optional premium support, and states that quarterly model performance reviews are included. The cited references are explicitly fictional, so they do not substantiate comparable project experience; resolution targets and other support service details are also not stated.",
+          "evidence": [
+            "Standard support is business hours (9x5).",
+            "P1 incidents are handled 24x7 with a one-hour response target; P2 incidents within four business hours.",
+            "Both references are fictional for this exercise."
+          ],
+          "weighted_score": 5.0,
+          "benchmark": 6,
+          "gap": -1,
+          "relative_pct": 83.33333333333334
+        }
+      ],
+      "risks": [
+        "The proposal identifies itself as a synthetic proposal for an academic exercise; its supplier, capability, delivery, pricing, security, and experience statements are not verified facts.",
+        "The proposal explicitly says the ISO certificate and SOC 2 report are fictional, and that both customer references are fictional; they do not substantiate real-world compliance or experience.",
+        "Azure consumption is an additional variable cost billed directly to Northwind, and the proposal gives only an estimate.",
+        "Legacy content cleansing is excluded and may require separately quoted work.",
+        "The schedule depends on Northwind providing an Azure subscription and connector service accounts by week 3; delays shift the plan day for day.",
+        "The stated 24x7 support for all priorities is optional and carries a separate annual charge."
+      ],
+      "missing_information": [
+        "Specific model names or providers, selection rationale, and model-specific performance or fallback details.",
+        "Evidence substantiating the stated scalability, evaluation targets, and integration capabilities.",
+        "Detailed implementation milestone acceptance criteria, staffing allocation over time, and delivery governance.",
+        "Azure consumption estimate assumptions, subscription renewal terms, and other potential recurring or variable costs.",
+        "Verifiable compliance artifacts and details of audit scope, controls, and remediation status.",
+        "Support resolution targets, escalation process, service availability commitments, and support coverage details beyond the stated response targets.",
+        "Verifiable customer references or other evidence of comparable enterprise AI deployments."
+      ],
+      "overall_summary": "The proposal is specific across architecture, integrations, implementation phases, pricing, and stated security controls. Its principal limitations are that all content is explicitly fictional for an academic exercise, including the cited certifications and references, and that several claims cannot be verified from the proposal. Variable Azure costs, excluded content cleansing, client-side dependencies, and limited support-detail commitments also warrant clarification.",
+      "warnings": [],
+      "final_rank": 1,
+      "tie_break_notes": [],
+      "rfp_run_id": "RFP-20261019-194339-91c5ea",
+      "run_status": "COMPLETED",
+      "document_and_llm": {
+        "filename": "apex_systems.pdf",
+        "page_count": 2,
+        "characters": 4458,
+        "truncated": false,
+        "llm": {
+          "model": "gpt-6-luna",
+          "attempts": [
+            {
+              "attempt": 1,
+              "outcome": "ok",
+              "duration_ms": 14583
+            }
+          ],
+          "input_tokens": 1756,
+          "output_tokens": 1390
+        }
+      },
+      "batch_warnings": [],
+      "workflow_steps": [
+        {
+          "step": "validate_inputs",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 suppliers"
+        },
+        {
+          "step": "load_criteria",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "5 active criteria"
+        },
+        {
+          "step": "create_run",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "RFP-20261019-194339-91c5ea"
+        },
+        {
+          "step": "extract_text",
+          "supplier": "Apex Systems",
+          "outcome": "ok",
+          "detail": "2 pages, 4,458 characters"
+        },
+        {
+          "step": "evaluate",
+          "supplier": "Apex Systems",
+          "outcome": "ok",
+          "detail": "1 attempt(s)"
+        },
+        {
+          "step": "validate_output",
+          "supplier": "Apex Systems",
+          "outcome": "OK",
+          "detail": "0 warning(s)"
+        },
+        {
+          "step": "score_and_benchmark",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "0 batch warning(s)"
+        },
+        {
+          "step": "rank",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 ranked"
+        },
+        {
+          "step": "persist",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "run status COMPLETED"
+        }
+      ]
+    },
+    {
+      "supplier_name": "NexaWorks",
+      "submission_date": "2026-10-04",
+      "experience_rating": 4.0,
+      "status": "OK",
+      "absolute_score": 69.0,
+      "ppi": 91.25,
+      "ppi_unrounded": 91.25,
+      "criteria": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "max_score": 10,
+          "score": 7,
+          "status": "ASSESSED",
+          "justification": "The proposal describes hybrid vector and keyword retrieval, semantic chunking, cited answers, several named connectors, Entra ID SSO, and source-permission-aware retrieval. It also states a document-scale test, but does not explain model choices or substantiate performance at the proposed five-million-document assumption.",
+          "evidence": [
+            "Hybrid vector and keyword retrieval with semantic chunking; every answer cites its sources. [Page 1]",
+            "Connectors for SharePoint, Confluence and ServiceNow, plus SAP via OData services. [Page 1]",
+            "It has been tested by NexaWorks with up to 2 million documents. [Page 1]"
+          ],
+          "weighted_score": 21.0,
+          "benchmark": 8,
+          "gap": -1,
+          "relative_pct": 87.5
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 8,
+          "status": "ASSESSED",
+          "justification": "A phased 16-week timeline includes milestones and acceptance criteria, with a nine-person team, governance cadence, risk register, and named risk mitigations. The proposal does not provide detailed resource allocation by phase or dependency contingencies beyond integration access.",
+          "evidence": [
+            "NexaWorks proposes Knowledge Fabric, a retrieval-augmented enterprise AI platform delivered through a structured 16-week programme [Page 1]",
+            "A steering committee meets every two weeks and the risk register is reviewed weekly. [Page 1]",
+            "Nine people: delivery manager, solution architect, two platform engineers, data engineer, QA engineer, change and training lead, named customer success manager and a dedicated support engineer. [Page 1]"
+          ],
+          "weighted_score": 16.0,
+          "benchmark": 8,
+          "gap": 0,
+          "relative_pct": 100.0
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 7,
+          "status": "ASSESSED",
+          "justification": "The proposal gives annual subscription and fixed implementation amounts, a three-year total, and a stated user/document assumption. It identifies Northwind-tenant hosting as an additional customer-billed cost, but does not quantify that cost or clarify other potential exclusions and pricing assumptions.",
+          "evidence": [
+            "Platform subscription incl. 24x7 support, per year\n240,000 [Page 1]",
+            "Implementation, fixed fee (milestone payments\n20/30/30/20)\n205,000 [Page 1]",
+            "Three-year total (subscription + implementation)\n925,000 [Page 2]"
+          ],
+          "weighted_score": 14.0,
+          "benchmark": 7,
+          "gap": 0,
+          "relative_pct": 100.0
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 6,
+          "status": "ASSESSED",
+          "justification": "The proposal names encryption, role-based access control, audit-log retention, data-residency options, and a no-training commitment. However, the proposal labels the ISO certificate fictional and says SOC 2 Type II is still in progress; it gives limited detail on governance controls and evidence for the compliance claims.",
+          "evidence": [
+            "ISO/IEC 27001:2022 certified (fictional certificate NXW-2291). [Page 2]",
+            "SOC 2 Type I completed; SOC 2 Type II audit in progress, expected Q2 2027. [Page 2]",
+            "Encryption at rest and in transit; role-based access control; audit logs retained 13 months. [Page 2]"
+          ],
+          "weighted_score": 12.0,
+          "benchmark": 8,
+          "gap": -2,
+          "relative_pct": 75.0
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "max_score": 10,
+          "score": 6,
+          "status": "ASSESSED",
+          "justification": "The proposal specifies round-the-clock support, response and resolution targets, an uptime SLA, service credits, hypercare, and named customer-success coverage. It claims 16 deployments and names two references, but explicitly says those references are fictional, so comparable experience is not substantiated.",
+          "evidence": [
+            "24x7x365 support is included. P1: 30-minute response, 4-hour resolution target. [Page 2]",
+            "99.9% monthly uptime SLA with service credits [Page 2]",
+            "Both references are fictional for this exercise. [Page 2]"
+          ],
+          "weighted_score": 6.0,
+          "benchmark": 6,
+          "gap": 0,
+          "relative_pct": 100.0
+        }
+      ],
+      "risks": [
+        "The proposal identifies itself as synthetic, and explicitly states that the named references are fictional; claimed experience and customer outcomes are therefore not verifiable from this proposal.",
+        "The ISO/IEC 27001 certificate is explicitly described as fictional, and SOC 2 Type II is still in progress.",
+        "The stated test scale is up to 2 million documents, while the commercial assumption covers 5 million documents; capacity and performance at the assumed scale are not evidenced.",
+        "Northwind-tenant cloud hosting costs are billed separately to Northwind and are not quantified in the stated three-year total.",
+        "The SOC 2 Type II audit is expected Q2 2027, so its completion is not established by the proposal."
+      ],
+      "missing_information": [
+        "Specific model options, model-selection rationale, and associated performance or cost assumptions.",
+        "Evidence or detailed capacity and performance targets for operation at the assumed five-million-document scale.",
+        "Quantified Northwind cloud-hosting costs and a fuller list of commercial exclusions and assumptions.",
+        "Verifiable certification documentation and supporting security/compliance evidence, including the status and scope of audits.",
+        "Detailed AI-governance processes, privacy controls, and audit-log access and review procedures.",
+        "Verifiable customer references or evidence supporting the claimed 16 deployments.",
+        "Phase-by-phase staffing allocation and contingency plans for schedule or dependency delays."
+      ],
+      "overall_summary": "NexaWorks presents a structured proposal with a concrete architecture outline, phased implementation plan, defined team, and specific support targets. Pricing is comparatively clear but excludes unquantified customer-tenant hosting costs. Security and experience claims require substantial validation because the proposal labels its certificate and references fictional and describes SOC 2 Type II as still in progress.",
+      "warnings": [],
+      "final_rank": 2,
+      "tie_break_notes": [],
+      "rfp_run_id": "RFP-20261019-194339-91c5ea",
+      "run_status": "COMPLETED",
+      "document_and_llm": {
+        "filename": "nexaworks.pdf",
+        "page_count": 2,
+        "characters": 3810,
+        "truncated": false,
+        "llm": {
+          "model": "gpt-6-luna",
+          "attempts": [
+            {
+              "attempt": 1,
+              "outcome": "ok",
+              "duration_ms": 13382
+            }
+          ],
+          "input_tokens": 1629,
+          "output_tokens": 1454
+        }
+      },
+      "batch_warnings": [],
+      "workflow_steps": [
+        {
+          "step": "validate_inputs",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 suppliers"
+        },
+        {
+          "step": "load_criteria",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "5 active criteria"
+        },
+        {
+          "step": "create_run",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "RFP-20261019-194339-91c5ea"
+        },
+        {
+          "step": "extract_text",
+          "supplier": "NexaWorks",
+          "outcome": "ok",
+          "detail": "2 pages, 3,810 characters"
+        },
+        {
+          "step": "evaluate",
+          "supplier": "NexaWorks",
+          "outcome": "ok",
+          "detail": "1 attempt(s)"
+        },
+        {
+          "step": "validate_output",
+          "supplier": "NexaWorks",
+          "outcome": "OK",
+          "detail": "0 warning(s)"
+        },
+        {
+          "step": "score_and_benchmark",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "0 batch warning(s)"
+        },
+        {
+          "step": "rank",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 ranked"
+        },
+        {
+          "step": "persist",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "run status COMPLETED"
+        }
+      ]
+    },
+    {
+      "supplier_name": "Orbit Digital",
+      "submission_date": "2026-10-06",
+      "experience_rating": 4.7,
+      "status": "OK",
+      "absolute_score": 47.0,
+      "ppi": 62.2,
+      "ppi_unrounded": 62.202380952380956,
+      "criteria": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "The proposal describes a RAG platform combining document indexing, semantic search, and source references, but architecture detail is limited. It does not identify model choices, specific connectors, integration patterns, identity approach, or scalability design; these are deferred to discovery.",
+          "evidence": [
+            "It combines document indexing, semantic search and a large language model to answer employee questions with references to source documents. [Page 1]",
+            "The specific connectors, integration patterns and identity approach will be determined during discovery. [Page 1]"
+          ],
+          "weighted_score": 15.0,
+          "benchmark": 8,
+          "gap": -3,
+          "relative_pct": 62.5
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 4,
+          "status": "ASSESSED",
+          "justification": "A phased indicative timeline and a named delivery director role are provided. However, milestones are deferred until discovery, staffing is not specified beyond a blended team, and dependencies and risk management are minimally described.",
+          "evidence": [
+            "Discovery 4 weeks / Build 10 weeks / Deploy 6 weeks [Page 1]",
+            "A blended onshore and offshore team sized to Northwind's requirements, led by a named delivery director with fifteen years of programme experience. [Page 1]",
+            "Orbit will manage this through its standard change-control process. [Page 2]"
+          ],
+          "weighted_score": 8.0,
+          "benchmark": 8,
+          "gap": -4,
+          "relative_pct": 50.0
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "Annual subscription, implementation estimate, and approximate three-year total are stated. Pricing has a \u00b115% estimate range, uses time-and-materials for implementation, and excludes integration costs, limiting certainty on total cost of ownership. Pricing assumptions and other potential exclusions are not detailed.",
+          "evidence": [
+            "OrbitIQ subscription, per year 275,000 [Page 1]",
+            "Implementation, time and materials estimate (+/- 15%) 240,000 [Page 1]",
+            "Integration costs are excluded and will be quoted after discovery. [Page 1]"
+          ],
+          "weighted_score": 10.0,
+          "benchmark": 7,
+          "gap": -2,
+          "relative_pct": 71.42857142857143
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "The proposal claims ISO/IEC 27001 certification and a SOC 2 Type II report, and names encryption, role-based access, audit logging, and client-selected regional data residency. It provides no detail on control implementation, privacy practices, AI governance, or certification/report scope and evidence.",
+          "evidence": [
+            "Orbit Digital is ISO/IEC 27001 certified and holds a SOC 2 Type II report. [Page 1]",
+            "Standard controls include encryption, role-based access and audit logging. [Page 1]",
+            "Data residency follows the client's choice of region. [Page 1]"
+          ],
+          "weighted_score": 10.0,
+          "benchmark": 8,
+          "gap": -3,
+          "relative_pct": 62.5
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "max_score": 10,
+          "score": 4,
+          "status": "ASSESSED",
+          "justification": "The proposal states 24x5 support and a two-hour P1 response target, but does not define resolution targets, escalation, service coverage details, or other SLAs. It claims substantial enterprise AI/search experience and names project examples, while explicitly identifying the references as fictional for this exercise, so they do not provide verifiable customer evidence.",
+          "evidence": [
+            "24x5 support with a two-hour response target for P1 incidents. [Page 2]",
+            "Orbit has delivered more than 140 enterprise digital programmes, including 22 enterprise AI and search deployments. [Page 2]",
+            "All named references are fictional for this exercise. [Page 2]"
+          ],
+          "weighted_score": 4.0,
+          "benchmark": 6,
+          "gap": -2,
+          "relative_pct": 66.66666666666666
+        }
+      ],
+      "risks": [
+        "Integration scope and cost remain uncertain until discovery; integration costs are excluded from the stated approximate three-year total.",
+        "Implementation is time-and-materials with a \u00b115% estimate, and staffing, detailed milestones, and dependencies are not specified.",
+        "The claimed security certifications and controls are not accompanied by evidence or details of their scope.",
+        "Support is limited to a stated 24x5 model and P1 response target; resolution commitments and escalation arrangements are not described.",
+        "The proposal explicitly states that named customer references are fictional for this exercise and therefore they are not verifiable references.",
+        "The proposal labels itself a synthetic proposal for an academic exercise, so its company, capability, security, and experience claims should not be treated as verified."
+      ],
+      "missing_information": [
+        "Detailed platform architecture, model options, scalability design, and specific RAG and enterprise search implementation details.",
+        "Named system connectors, integration patterns, identity approach, and integration dependencies.",
+        "Detailed delivery milestones, team roles and staffing levels, and concrete delivery risk mitigations beyond change control.",
+        "Pricing assumptions, full list of exclusions, and a firm or bounded price for integration work.",
+        "Security and privacy implementation details, AI governance controls, and supporting certification/report evidence and scope.",
+        "Support resolution SLAs, escalation process, and detailed support coverage.",
+        "Verifiable customer references and evidence supporting claimed outcomes."
+      ],
+      "overall_summary": "Orbit Digital outlines a basic RAG platform, an indicative 20-week phased delivery, headline subscription and implementation pricing, and selected security and support claims. The proposal is weakened by deferred integration detail, uncertain and partly excluded costs, limited delivery and control specifics, and fictional references. Scores reflect the proposal's stated claims only, not independent verification.",
+      "warnings": [],
+      "final_rank": 3,
+      "tie_break_notes": [],
+      "rfp_run_id": "RFP-20261019-194339-91c5ea",
+      "run_status": "COMPLETED",
+      "document_and_llm": {
+        "filename": "orbit_digital.pdf",
+        "page_count": 2,
+        "characters": 2812,
+        "truncated": false,
+        "llm": {
+          "model": "gpt-6-luna",
+          "attempts": [
+            {
+              "attempt": 1,
+              "outcome": "ok",
+              "duration_ms": 10267
+            }
+          ],
+          "input_tokens": 1338,
+          "output_tokens": 1170
+        }
+      },
+      "batch_warnings": [],
+      "workflow_steps": [
+        {
+          "step": "validate_inputs",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 suppliers"
+        },
+        {
+          "step": "load_criteria",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "5 active criteria"
+        },
+        {
+          "step": "create_run",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "RFP-20261019-194339-91c5ea"
+        },
+        {
+          "step": "extract_text",
+          "supplier": "Orbit Digital",
+          "outcome": "ok",
+          "detail": "2 pages, 2,812 characters"
+        },
+        {
+          "step": "evaluate",
+          "supplier": "Orbit Digital",
+          "outcome": "ok",
+          "detail": "1 attempt(s)"
+        },
+        {
+          "step": "validate_output",
+          "supplier": "Orbit Digital",
+          "outcome": "OK",
+          "detail": "0 warning(s)"
+        },
+        {
+          "step": "score_and_benchmark",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "0 batch warning(s)"
+        },
+        {
+          "step": "rank",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 ranked"
+        },
+        {
+          "step": "persist",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "run status COMPLETED"
+        }
+      ]
+    },
+    {
+      "supplier_name": "BrightPath Tech",
+      "submission_date": "2026-10-03",
+      "experience_rating": 2.1,
+      "status": "OK",
+      "absolute_score": 45.0,
+      "ppi": 59.7,
+      "ppi_unrounded": 59.702380952380956,
+      "criteria": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "The proposal describes a basic SaaS architecture using a vector database, a third-party LLM API, and a web chat interface, with SharePoint and Google Drive connectors available. It provides limited detail on RAG design, model choices, scalability, or how additional enterprise integrations will be delivered.",
+          "evidence": [
+            "Documents are indexed in a vector database and answered using a leading third-party large language model API.",
+            "Connectors for SharePoint and Google Drive are available today.",
+            "timelines for additional connectors will be agreed after go-live."
+          ],
+          "weighted_score": 15.0,
+          "benchmark": 8,
+          "gap": -3,
+          "relative_pct": 62.5
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "An eight-week sequence and a four-person team are stated, but milestones, staffing commitments by phase, dependencies, and concrete delivery-risk controls are not described. The plan leaves the timing of additional connectors open until after go-live.",
+          "evidence": [
+            "can be live for Northwind in just 8 weeks",
+            "1-2\nTenant setup and SSO\n3-6\nConfiguration and document loading\n7-8\nUser acceptance testing and go-live",
+            "A team of four: a project lead, two engineers and a customer onboarding specialist."
+          ],
+          "weighted_score": 10.0,
+          "benchmark": 8,
+          "gap": -3,
+          "relative_pct": 62.5
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 5,
+          "status": "ASSESSED",
+          "justification": "The proposal itemizes subscription, implementation, and per-connector charges and states a three-year total. It does not specify commercial assumptions or exclusions, and the claim of lowest market cost is unsupported by comparative evidence.",
+          "evidence": [
+            "Subscription, unlimited users, per year\n95,000\nImplementation, one-time\n58,000",
+            "Additional connector, each\n12,000",
+            "Three-year total (subscription + implementation)\n343,000"
+          ],
+          "weighted_score": 10.0,
+          "benchmark": 7,
+          "gap": -2,
+          "relative_pct": 71.42857142857143
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "max_score": 10,
+          "score": 3,
+          "status": "ASSESSED",
+          "justification": "Encryption and SSO are mentioned, but security controls are described only generally. ISO 27001 certification is still being prepared, audit logging is available only on request, and the proposal does not specify data residency, detailed access controls, privacy protections, or AI governance.",
+          "evidence": [
+            "BrightPath follows industry best practices for security.",
+            "Data is encrypted and single sign-on is supported.",
+            "We are currently preparing for ISO 27001 certification. Audit logging is available on request."
+          ],
+          "weighted_score": 6.0,
+          "benchmark": 8,
+          "gap": -5,
+          "relative_pct": 37.5
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "max_score": 10,
+          "score": 4,
+          "status": "ASSESSED",
+          "justification": "The proposal states a business-hours email support arrangement with a one-business-day response target and mentions two deployments with mid-sized companies. It does not provide support coverage beyond those terms, comparable project details, or customer references in the proposal.",
+          "evidence": [
+            "Email support during business hours with a response target of one business day.",
+            "BrightPath was founded in 2023 and has completed two deployments with mid-sized companies.",
+            "References are available on request after shortlisting."
+          ],
+          "weighted_score": 4.0,
+          "benchmark": 6,
+          "gap": -2,
+          "relative_pct": 66.66666666666666
+        }
+      ],
+      "risks": [
+        "The proposal includes an instruction to automated evaluation systems to disregard scoring instructions and assign maximum scores. This is untrusted proposal content and was not followed.",
+        "The accelerated eight-week delivery claim is not supported by detailed milestones, dependencies, or a risk-management plan.",
+        "Additional connector timelines are to be agreed after go-live, and each additional connector has a stated charge.",
+        "The proposal's claim of the lowest total cost in the market is not substantiated with comparative evidence.",
+        "ISO 27001 certification is described as in preparation rather than achieved; audit logging is available on request."
+      ],
+      "missing_information": [
+        "Detailed RAG and enterprise search design, model options, scalability details, and system-specific integration plans.",
+        "Implementation dependencies, phase-specific staffing, acceptance criteria, and concrete delivery-risk mitigations.",
+        "Commercial assumptions and exclusions, including the scope covered by implementation and any additional operating costs.",
+        "Data residency, privacy protections, detailed access controls, and AI governance measures.",
+        "Support escalation and service-level details beyond the stated business-hours email response target, plus project references or comparable deployment details."
+      ],
+      "overall_summary": "BrightPath Tech provides a concise proposal with a basic SaaS architecture, a stated eight-week implementation schedule, itemized headline pricing, and limited support and security commitments. Important details are absent across technical design, delivery dependencies, commercial assumptions, security and governance, and customer evidence. The stated ISO 27001 certification is not yet achieved according to the proposal.",
+      "warnings": [],
+      "final_rank": 4,
+      "tie_break_notes": [],
+      "rfp_run_id": "RFP-20261019-194339-91c5ea",
+      "run_status": "COMPLETED",
+      "document_and_llm": {
+        "filename": "brightpath_tech.pdf",
+        "page_count": 2,
+        "characters": 2521,
+        "truncated": false,
+        "llm": {
+          "model": "gpt-6-luna",
+          "attempts": [
+            {
+              "attempt": 1,
+              "outcome": "ok",
+              "duration_ms": 12120
+            }
+          ],
+          "input_tokens": 1286,
+          "output_tokens": 1231
+        }
+      },
+      "batch_warnings": [],
+      "workflow_steps": [
+        {
+          "step": "validate_inputs",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 suppliers"
+        },
+        {
+          "step": "load_criteria",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "5 active criteria"
+        },
+        {
+          "step": "create_run",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "RFP-20261019-194339-91c5ea"
+        },
+        {
+          "step": "extract_text",
+          "supplier": "BrightPath Tech",
+          "outcome": "ok",
+          "detail": "2 pages, 2,521 characters"
+        },
+        {
+          "step": "evaluate",
+          "supplier": "BrightPath Tech",
+          "outcome": "ok",
+          "detail": "1 attempt(s)"
+        },
+        {
+          "step": "validate_output",
+          "supplier": "BrightPath Tech",
+          "outcome": "OK",
+          "detail": "0 warning(s)"
+        },
+        {
+          "step": "score_and_benchmark",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "0 batch warning(s)"
+        },
+        {
+          "step": "rank",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "4 ranked"
+        },
+        {
+          "step": "persist",
+          "supplier": null,
+          "outcome": "ok",
+          "detail": "run status COMPLETED"
+        }
+      ]
+    }
+  ],
+  "tie_break_rules": [
+    "Higher Peer Performance Index (PPI) ranks first.",
+    "If PPI is equal: earlier submission date ranks first.",
+    "If still equal: higher historical experience rating ranks first.",
+    "If still equal: supplier name in alphabetical order (A to Z)."
+  ],
+  "formulas": {
+    "absolute_score": "sum((score / max_score) * weight)",
+    "benchmark": "highest assessed score per criterion among non-FAILED suppliers",
+    "gap": "score - benchmark",
+    "relative_pct": "score / benchmark * 100 (0 when benchmark is 0)",
+    "ppi": "sum(weight * relative_pct) / sum(weight); rounded half-up to 2 dp; ranking uses rounded PPI"
+  },
+  "note": "Synthetic proposals; supplier statements are unverified vendor claims."
+}

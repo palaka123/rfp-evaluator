@@ -6,10 +6,11 @@ so user-supplied values can never change the meaning of a statement.
 
 from __future__ import annotations
 
+import json
 import math
 import os
 import sqlite3
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 DEFAULT_DB_PATH = Path(os.getenv("RFP_DB_PATH", "data/rfp.db"))
@@ -223,3 +224,59 @@ def update_criteria(
         conn.execute("ROLLBACK")
         raise
     return load_criteria(conn, active_only=True)
+
+
+
+# --- Runs and results (added in Step 9) -----------------------------------
+
+def create_run(conn: sqlite3.Connection, rfp_run_id: str, created_at: str, criteria: list[Criterion]) -> None:
+    """Insert a RUNNING run with a snapshot of the exact criteria and weights it uses."""
+    snapshot = json.dumps([asdict(c) for c in criteria])
+    with conn:
+        conn.execute(
+            "INSERT INTO rfp_runs (rfp_run_id, created_at, status, criteria_snapshot_json) VALUES (?, ?, 'RUNNING', ?)",
+            (rfp_run_id, created_at, snapshot),
+        )
+
+
+def set_run_status(conn: sqlite3.Connection, rfp_run_id: str, status: str) -> None:
+    with conn:
+        conn.execute("UPDATE rfp_runs SET status = ? WHERE rfp_run_id = ?", (status, rfp_run_id))
+
+
+def save_supplier_results(conn: sqlite3.Connection, rfp_run_id: str, rows: list[dict], run_status: str) -> None:
+    """Insert all supplier rows and set the final run status in ONE transaction (all or nothing)."""
+    with conn:
+        conn.executemany(
+            "INSERT INTO supplier_results (rfp_run_id, supplier_name, submission_date, experience_rating, "
+            "absolute_score, ppi, final_rank, evaluation_status, result_json) "
+            "VALUES (:rfp_run_id, :supplier_name, :submission_date, :experience_rating, "
+            ":absolute_score, :ppi, :final_rank, :evaluation_status, :result_json)",
+            [{**row, "rfp_run_id": rfp_run_id} for row in rows],
+        )
+        conn.execute("UPDATE rfp_runs SET status = ? WHERE rfp_run_id = ?", (run_status, rfp_run_id))
+
+
+def list_runs(conn: sqlite3.Connection) -> list[dict]:
+    """All runs, newest first, with how many suppliers each has."""
+    sql = ("SELECT r.rfp_run_id, r.created_at, r.status, COUNT(s.id) AS supplier_count "
+           "FROM rfp_runs r LEFT JOIN supplier_results s ON s.rfp_run_id = r.rfp_run_id "
+           "GROUP BY r.rfp_run_id ORDER BY r.created_at DESC, r.rowid DESC")
+    return [dict(row) for row in conn.execute(sql)]
+
+
+def load_run(conn: sqlite3.Connection, rfp_run_id: str) -> dict | None:
+    """One run with its criteria snapshot and supplier results (ranked first, by rank)."""
+    run = conn.execute("SELECT * FROM rfp_runs WHERE rfp_run_id = ?", (rfp_run_id,)).fetchone()
+    if run is None:
+        return None
+    rows = conn.execute(
+        "SELECT result_json FROM supplier_results WHERE rfp_run_id = ? "
+        "ORDER BY final_rank IS NULL, final_rank, supplier_name", (rfp_run_id,)).fetchall()
+    return {
+        "rfp_run_id": run["rfp_run_id"],
+        "created_at": run["created_at"],
+        "status": run["status"],
+        "criteria_snapshot": json.loads(run["criteria_snapshot_json"] or "[]"),
+        "suppliers": [json.loads(r["result_json"]) for r in rows],
+    }
